@@ -3,6 +3,7 @@ package sqlite
 import (
 	"database/sql"
 	"fmt"
+	"path/filepath"
 
 	sqlite "github.com/mattn/go-sqlite3"
 	"github.com/mickael-menu/zk/internal/core"
@@ -78,6 +79,7 @@ func (db *DB) migrate() error {
 
 		migrations := []struct {
 			SQL             []string
+			Migrate         func(tx Transaction) error
 			NeedsReindexing bool
 		}{
 			{ // 1
@@ -207,6 +209,46 @@ func (db *DB) migrate() error {
 					   LEFT JOIN notes t ON l.target_id = t.id`,
 				},
 			},
+
+			{ // 7
+				SQL: []string{
+					// Add a `filename` column to `notes`
+					`ALTER TABLE notes ADD COLUMN filename TEXT DEFAULT('') NOT NULL`,
+				},
+				Migrate: func(tx Transaction) error {
+					// Fill the filenames
+					rows, err := tx.Query(`SELECT id, path FROM notes`)
+					if err != nil {
+						return err
+					}
+					defer rows.Close()
+
+					filenames := map[int]string{}
+
+					for rows.Next() {
+						var id int
+						var path string
+						err := rows.Scan(&id, &path)
+						if err != nil {
+							return err
+						}
+						filenames[id] = filepath.Base(path)
+					}
+
+					for id, filename := range filenames {
+						_, err = tx.Exec(`
+							UPDATE notes
+							   SET filename = ?
+							 WHERE id = ?
+						`, filename, id)
+						if err != nil {
+							return err
+						}
+					}
+
+					return nil
+				},
+			},
 		}
 
 		needsReindexing := false
@@ -216,8 +258,20 @@ func (db *DB) migrate() error {
 				continue
 			}
 
-			stmts := append(migration.SQL, fmt.Sprintf("PRAGMA user_version = %d", i+1))
-			err = tx.ExecStmts(stmts)
+			err = tx.ExecStmts(migration.SQL)
+			if err != nil {
+				return err
+			}
+
+			// Execute additional migration steps.
+			if migration.Migrate != nil {
+				err = migration.Migrate(tx)
+				if err != nil {
+					return err
+				}
+			}
+
+			_, err = tx.Exec(fmt.Sprintf("PRAGMA user_version = %d", i+1))
 			if err != nil {
 				return err
 			}

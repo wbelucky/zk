@@ -47,8 +47,8 @@ func NewNoteDAO(tx Transaction, logger util.Logger) *NoteDAO {
 
 		// Add a new note to the index.
 		addStmt: tx.PrepareLazy(`
-			INSERT INTO notes (path, sortable_path, title, lead, body, raw_content, word_count, metadata, checksum, created, modified)
-			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+			INSERT INTO notes (filename, path, sortable_path, title, lead, body, raw_content, word_count, metadata, checksum, created, modified)
+			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 		`),
 
 		// Update the content of a note.
@@ -128,7 +128,7 @@ func (d *NoteDAO) Add(note core.Note) (core.NoteID, error) {
 
 	metadata := d.metadataToJSON(note)
 	res, err := d.addStmt.Exec(
-		note.Path, sortablePath, note.Title, note.Lead, note.Body,
+		note.Filename(), note.Path, sortablePath, note.Title, note.Lead, note.Body,
 		note.RawContent, note.WordCount, metadata, note.Checksum, note.Created,
 		note.Modified,
 	)
