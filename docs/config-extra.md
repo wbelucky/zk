@@ -1,4 +1,5 @@
 # Extra user variables
+{% raw %}
 
 `zk` is opened for template context extension which can be useful when [creating new notes](note-creation.md), for example:
 
@@ -41,3 +42,4 @@ Behold, the mighty dynamic header!
 {{/if}}
 ```
 
+{% endraw %}

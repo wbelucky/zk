@@ -1,4 +1,5 @@
 # Notebook housekeeping
+{% raw %}
 
 Tending to your notes does not only mean writing. You need to keep your [notebook](notebook.md) in great shape to make good use of it. For many maintenance tasks, `zk` can help!
 
@@ -24,3 +25,5 @@ $ zk list --format '{{word-count}}\t{{title}}' --sort word-count --limit 20
 86      Anatomy of a notebook
 ...
 ```
+
+{% endraw %}

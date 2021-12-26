@@ -1,4 +1,5 @@
 # Integration with `fzf`
+{% raw %}
 
 [`fzf`](https://github.com/junegunn/fzf) is an awesome and versatile fuzzy finder powering `zk`'s [interactive filtering mode](note-filtering.md).
 
@@ -60,3 +61,5 @@ The following variables are available in the line template.
 | `checksum`      | string   | SHA-256 checksum of the note file                                  |
 
 1. YAML keys are normalized to lower case.
+
+{% endraw %}

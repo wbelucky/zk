@@ -1,4 +1,5 @@
 # YAML frontmatter
+{% raw %}
 
 Markdown being a simple format, it does not offer any way to attach additional metadata to a note. The community came up with a solution by inserting a YAML header at the top of each note to contain its metadata. This method is widely supported among Zettelkasten softwares, including `zk`.
 
@@ -21,3 +22,5 @@ keywords: [writing, essay, practice]
 | `aliases`  | Alternative titles for this note, used by `--mention`       |
 
 All metadata are indexed and can be printed in `zk list` output, using the template variable `{{metadata.<key>}}`, e.g. `{{metadata.description}}`. The keys are normalized to lower case.
+
+{% endraw %}

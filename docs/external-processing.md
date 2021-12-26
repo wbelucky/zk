@@ -1,4 +1,5 @@
 # Send notes for processing by other programs
+{% raw %}
 
 A great way to expand `zk` feature set is to explore a wealth of command-line tools available. You can use `zk`'s powerful [searching and filtering](note-filtering.md) capabilities to select notes before delegating further processing to other programs.
 
@@ -56,3 +57,4 @@ In this particular case, we usually want to process only one note at a time. You
 $ zk list --format {{raw-content}} --limit 1
 ```
 
+{% endraw %}

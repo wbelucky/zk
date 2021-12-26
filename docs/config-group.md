@@ -1,4 +1,5 @@
 # Note group
+{% raw %}
 
 A *group* is a named [configuration section](config.md) used to override [note creation rules](config-note.md) for specific directories. This allows you to use your [notebook](notebook.md) very differently depending on the type of note created. For a practical example, take a look at [maintaining a daily journal](daily-journal.md).
 
@@ -48,3 +49,5 @@ If you prefer to keep multiple groups in a single directory, you can specify whi
 ```sh
 $ zk new --group journal
 ```
+
+{% endraw %}

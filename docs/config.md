@@ -1,4 +1,5 @@
 # Configuration file
+{% raw %}
 
 Each [notebook](notebook.md) contains a configuration file used to customize your experience with `zk`. This file is located at `.zk/config.toml` and uses the [TOML format](https://github.com/toml-lang/toml). It is composed of several optional sections:
 
@@ -115,3 +116,5 @@ wiki-title = "hint"
 # Warn for dead links between notes.
 dead-link = "error"
 ```
+
+{% endraw %}

@@ -1,4 +1,5 @@
 # Template syntax
+{% raw %}
 
 `zk` uses the [Handlebars template syntax](https://handlebarsjs.com/guide) for its templates. The list of variables available depends of the running command:
 
@@ -127,3 +128,4 @@ The `{{json}}` helper serializes its argument to a JSON value. This is useful to
 
 You can serialize the whole template context as a JSON object with `{{json .}}`, which is how `zk list --format json` produces its output.
 
+{% endraw %}

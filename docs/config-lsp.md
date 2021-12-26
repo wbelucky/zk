@@ -1,4 +1,5 @@
 # LSP configuration
+{% raw %}
 
 The `[lsp]` [configuration file](config.md) section provides settings to fine-tune the [LSP editors integration](editors-integration.md).
 
@@ -59,3 +60,5 @@ note-filter-text = "{{title}} {{path}}"
 # Show the note filename without extension as detail.
 note-detail = "{{filename-stem}}"
 ```
+
+{% endraw %}

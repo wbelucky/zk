@@ -1,4 +1,5 @@
 # Creating a new note
+{% raw %}
 
 You can add a new note to a [notebook](notebook.md) using `zk new --title "An interesting concept" [<directory>]`.
 
@@ -22,3 +23,4 @@ For example, to use the content of the macOS clipboard as the initial content yo
 $ pbpaste | zk new
 ```
 
+{% endraw %}

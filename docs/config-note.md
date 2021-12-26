@@ -1,4 +1,5 @@
 # Note configuration
+{% raw %}
 
 The `[note]` section from the [configuration file](config.md) is used to set the [note creation rules](note-creation.md). The following properties are customizable:
 
@@ -55,3 +56,5 @@ Here are some common filename patterns you may want to use:
 * `{{date now '%Y-%m-%d'}}` – e.g. `2009-11-17.md`
     * Sortable, human-friendly format for a daily journal.
     * i.e. [Maintaining a daily journal](daily-journal.md).
+
+{% endraw %}

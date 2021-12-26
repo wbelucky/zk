@@ -1,4 +1,5 @@
 # Neuron
+{% raw %}
 
 [Neuron](https://neuron.zettel.page/) is a command-line app for managing a plain-text [Zettelkasten](https://zettelkasten.de/introduction/).
 
@@ -27,3 +28,5 @@ But you can make your [notebook](notebook.md) even more tightly integrated with 
     serve = "neuron gen -wS"
     gen = "neuron gen -o public"
     ```
+
+{% endraw %}

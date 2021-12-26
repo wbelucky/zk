@@ -1,4 +1,5 @@
 # Note formats
+{% raw %}
 
 To keep your notebooks [future-proof](future-proof.md), `zk` uses a simple plain text format for your notes. Only Markdown is supported at the moment, but more formats may be added in the future.
 
@@ -40,3 +41,5 @@ The following variables are available in the template:
 | `metadata` | map    | YAML frontmatter metadata, e.g. `metadata.id`<sup>1</sup> |
 
 1. YAML keys are normalized to lower case.
+
+{% endraw %}

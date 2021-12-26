@@ -1,4 +1,5 @@
 # Command aliases
+{% raw %}
 
 A command alias is a custom `zk` command which can run another `zk` command or an external program.
 
@@ -203,3 +204,4 @@ cp = 'mkdir -p "$1" && zk list --quiet --format path --delimiter0 ${@:2} | xargs
 
 Usage: `zk cp output/ --created-after 'last two weeks'`
 
+{% endraw %}
