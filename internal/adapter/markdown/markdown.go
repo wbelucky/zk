@@ -184,12 +184,14 @@ func parseTags(frontmatter frontmatter, root ast.Node, source []byte) ([]string,
 			}
 			return res
 
+		} else if val, ok := frontmatter.getBool(key); ok && val {
+			return []string{key}
 		} else {
 			return []string{}
 		}
 	}
 
-	for _, key := range []string{"tag", "tags", "keyword", "keywords"} {
+	for _, key := range []string{"tag", "tags", "keyword", "keywords", "draft"} {
 		for _, t := range findFMTags(key) {
 			// Trims any # prefix to support hashtags embedded in YAML
 			// frontmatter, as in Simple Markdown Zettelkasten:
@@ -371,4 +373,12 @@ func (m frontmatter) getStrings(keys ...string) ([]string, bool) {
 		}
 	}
 	return nil, false
+}
+
+func (m frontmatter) getBool(key string) (val, ok bool) {
+	if m.values == nil {
+		return false, false
+	}
+	val, ok = m.values[key].(bool)
+	return
 }
